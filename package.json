@@ -1,0 +1,44 @@
+{
+  "name": "spdf-system",
+  "version": "1.0.0",
+  "description": "Secure PDF viewer desktop application using Electron and MERN stack",
+  "main": "electron/main.js",
+  "author": "Abhijeet Date",
+  "license": "ISC",
+  "scripts": {
+    "electron": "electron .",
+    "start": "electron .",
+    "frontend-build": "cd frontend && npm run build",
+    "dist": "electron-builder",
+
+    "build": "npm run frontend-build && electron-builder --win"
+  },
+  "keywords": [
+    "electron",
+    "mern",
+    "pdf-security",
+    "spdf"
+  ],
+  "devDependencies": {
+    "electron": "^40.7.0",
+    "electron-builder": "^26.8.1"
+  },
+  "build": {
+    "appId": "com.spdf.system",
+    "productName": "SPDF Viewer",
+    "forceCodeSigning": false,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**/*",
+      "frontend/dist/**/*",
+      "backend/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    }
+  }
+}
