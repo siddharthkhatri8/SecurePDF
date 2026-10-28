@@ -10,7 +10,6 @@
     "start": "electron .",
     "frontend-build": "cd frontend && npm run build",
     "dist": "electron-builder",
-
     "build": "npm run frontend-build && electron-builder --win"
   },
   "keywords": [
@@ -40,5 +39,8 @@
       "target": "nsis",
       "icon": "icon.ico"
     }
+  },
+  "dependencies": {
+    "cors": "^2.8.6"
   }
 }

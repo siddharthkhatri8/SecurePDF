@@ -23,13 +23,43 @@ if (!fs.existsSync(uploadsDir)) {
 }
 
 // Middleware
+// app.use(cors({
+//   origin: process.env.FRONTEND_URL || 'https://securepdf-vbkf.onrender.com/',
+//   credentials: true
+// }));
+
+
+
+/**
+ * CORS Configuration
+ */
+const allowedOrigins = [
+  'https://secure-pdf-eight.vercel.app',
+  'http://localhost:5173'
+];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: function (origin, callback) {
+    // Allow requests without an Origin header, such as server-to-server requests
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    console.error('CORS blocked origin:', origin);
+    return callback(new Error('Not allowed by CORS'));
+  },
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
+
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 
 // Serve uploaded files (protected routes will handle access control)
 app.use('/uploads', express.static(uploadsDir));
