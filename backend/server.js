@@ -35,6 +35,7 @@ if (!fs.existsSync(uploadsDir)) {
  */
 const allowedOrigins = [
   'https://secure-pdf-eight.vercel.app',
+  'https://secure-i0vrw7gqd-sid-c3b6.vercel.app',
   'http://localhost:5173'
 ];
 
